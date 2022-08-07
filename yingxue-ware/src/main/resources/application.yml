@@ -1,0 +1,45 @@
+server:
+  port: 8987
+spring:
+  application:
+    name: API-WARE
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.109:8845
+        username: nacos
+        password: nacos
+        cluster-name: default
+      config:
+        server-addr: 192.168.2.109:8845
+        username: nacos
+        password: nacos
+        cluster-name: default
+  config:
+    import:
+      - optional:nacos:seata-client-ware.yml
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.2.109:3306/yuexi_mall_wms?characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 19980119
+
+#  redis:
+#    host: 192.168.2.109
+#    port: 6379
+com:
+  rs:
+    redis:
+      address: redis://192.168.2.109:6379
+
+mybatis:
+  mapper-locations: classpath:com/rs/mapper/*.xml
+  type-aliases-package: com.rs.entity
+
+logging:
+  level:
+    com.rs: debug
+
+

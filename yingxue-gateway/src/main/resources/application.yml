@@ -1,0 +1,78 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.109:8848
+        username: nacos
+        password: nacos
+        cluster-name: default
+      config:
+        server-addr: 192.168.2.109:8848
+        password: nacos
+        username: nacos
+        cluster-name: default
+    gateway:
+      routes:
+        - id: coupon_router
+          uri: lb://API-COUPON
+          predicates:
+            - Path=/coupon/**
+          filters:
+            - StripPrefix=1
+        - id: member_router
+          uri: lb://API-MEMBER
+          predicates:
+            - Path=/member/**
+          filters:
+            - StripPrefix=1
+        - id: order_router
+          uri: lb://API-ORDER
+          predicates:
+            - Path=/order/**
+          filters:
+            - StripPrefix=1
+        - id: product_router
+          uri: lb://API-PRODUCT
+          predicates:
+            - Path=/product/**
+          filters:
+            - StripPrefix=1
+        - id: ware_router
+          uri: lb://API-WARE
+          predicates:
+            - Path=/ware/**
+          filters:
+            - StripPrefix=1
+        - id: search_router
+          uri: lb://API-SEARCH
+          predicates:
+            - Path=/search/**
+          filters:
+            - StripPrefix=1
+        - id: auth_server_router
+          uri: lb://API-AUTH_SERVER
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+#  redis:
+#    host: 192.168.2.109
+#    port: 6379
+
+com:
+  rs:
+    redis:
+      address: redis://192.168.2.109:6379
+logging:
+  level:
+    com.rs: debug

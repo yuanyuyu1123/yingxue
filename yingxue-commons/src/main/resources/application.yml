@@ -1,0 +1,13 @@
+server:
+  port: 8980
+spring:
+  application:
+    name: API-COMMONS
+
+logging:
+  level:
+    com.rs: debug
+
+
+
+

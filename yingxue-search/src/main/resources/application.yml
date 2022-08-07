@@ -1,0 +1,39 @@
+server:
+  port: 8987
+spring:
+  application:
+    name: API-SEARCH
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.109:8848
+        username: nacos
+        password: nacos
+        cluster-name: default
+      config:
+        server-addr: 192.168.2.109:8848
+        username: nacos
+        password: nacos
+        cluster-name: default
+#  config:
+#    import:
+#      - optional:nacos:seata-client-search.yml
+#
+#  redis:
+#    host: 192.168.2.109
+#    port: 6379
+
+com:
+  rs:
+    redis:
+      address: redis://192.168.2.109:6379
+    elasticsearch:
+      host: 192.168.2.109
+      port: 9200
+
+logging:
+  level:
+    com.rs: debug
+
+
+
